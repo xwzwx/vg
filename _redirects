@@ -1,5 +1,2 @@
-# Using the plural "languages"
-/opportunities/languages/*    /language-job-template.html   200
-
 # The catch-all rule
 /    https://velocityglobal.com/    301
