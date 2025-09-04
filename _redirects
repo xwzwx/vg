@@ -1,5 +1,5 @@
-# Rule 1: Handle specific language job pages first.
+# Using the plural "languages"
 /opportunities/languages/*    /language-job-template.html   200
 
-# Rule 2: If the URL didn't match the rule above, redirect the root.
+# The catch-all rule
 /    https://velocityglobal.com/    301
