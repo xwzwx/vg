@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Opportunities - Velocity Global</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/favicon.ico">
+    <style>
+        /* --- General Styling & Fonts --- */
+        :root {
+            --primary-text-color: #2c3e50;
+            --secondary-text-color: #555;
+            --border-color: #e0e0e0;
+            --button-bg: #ffffff;
+            --button-active-bg: #000000;
+            --button-active-text: #ffffff;
+            --link-color: #34495e;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        }
+
+        body {
+            font-family: var(--font-stack);
+            margin: 0;
+            background-color: #f9f9f9;
+            color: var(--primary-text-color);
+            line-height: 1.6;
+        }
+
+        /* --- Main Container & Layout --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        /* --- Header & Logo --- */
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .company-logo {
+            max-width: 400px;
+            height: auto;
+        }
+
+        /* --- Page Titles --- */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--secondary-text-color);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* --- NEW: Country List Styling --- */
+        .country-list {
+            text-align: center;
+            color: var(--secondary-text-color);
+            margin: -20px auto 40px auto;
+            font-size: 0.95rem;
+            max-width: 85%;
+            line-height: 1.5;
+        }
+
+        .country-list strong {
+            color: var(--primary-text-color);
+        }
+        /* --- END NEW --- */
+
+
+        /* --- Filter Section --- */
+        .filters {
+            margin-bottom: 40px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--secondary-text-color);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background-color: var(--button-bg);
+            color: var(--primary-text-color);
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .filter-btn:hover {
+            border-color: #aaa;
+        }
+
+        .filter-btn.active {
+            background-color: var(--button-active-bg);
+            color: var(--button-active-text);
+            border-color: var(--button-active-bg);
+        }
+        
+        /* --- Job List Section --- */
+        .job-category {
+            margin-top: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-text-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .job-item {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .job-item:last-child {
+            border-bottom: none;
+        }
+
+        .job-title {
+            text-decoration: none;
+            color: var(--link-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .job-title:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+        
+        /* --- Hide/Show Logic --- */
+        .hidden {
+            display: none;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .company-logo {
+                max-width: 300px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <!-- IMPORTANT: Make sure 'vg_logo.png' is in the same folder as this HTML file -->
+            <img src="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/vg_logo.png" alt="Velocity Global Logo" class="company-logo">
+        </header>
+
+        <main>
+            <h1>Open Opportunities</h1>
+            <p class="subtitle">Showing <span id="job-count">11</span> opportunities</p>
+
+            <!-- NEWLY ADDED COUNTRY LIST -->
+            <p class="country-list">
+                <strong>Available countries:</strong> Australia, Austria, Belgium, Canada, Denmark, Finland, France, Germany, Ireland, Israel, Italy, Japan, Netherlands, New Zealand, Norway, Singapore, Spain, Sweden, Switzerland, Taiwan, UAE, United Kingdom, United States
+            </p>
+            <!-- END OF NEW SECTION -->
+
+            <section class="filters">
+                <span class="filter-label">Type</span>
+                <div class="filter-buttons">
+                    <!-- Added an "All" button for better UX -->
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="specialists">Specialists</button>
+                    <button class="filter-btn" data-filter="coders">Coders</button>
+                    <button class="filter-btn" data-filter="languages">Languages</button>
+                </div>
+            </section>
+
+            <section id="job-listings">
+
+                <!-- Specialists -->
+                <div class="job-group" data-category="specialists">
+                    <h2 class="job-category">Specialists</h2>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Advanced Biology Expertise Sought for AI Training</a>
+                    </div>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Advanced Chemistry Expertise Sought for AI Training</a>
+                    </div>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Advanced Physics Expertise Sought for AI Training</a>
+                    </div>
+                    <div class="job-item">
+                        <a href="#" class="job-title">AI Math Trainer</a>
+                    </div>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Create the Future of Technology – Train Robots with Data Entry for AI</a>
+                    </div>
+                     <div class="job-item">
+                        <a href="#" class="job-title">Graphics & Visual Design for AI Training</a>
+                    </div>
+                </div>
+
+                <!-- Coders -->
+                <div class="job-group" data-category="coders">
+                    <h2 class="job-category">Coders</h2>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Coding Expert - LATAM</a>
+                    </div>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Software Engineer for AI Training (Code Quality & Debugging Focus)</a>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="job-group" data-category="languages">
+                    <h2 class="job-category">Languages</h2>
+                    <div class="job-item">
+                        <a href="#" class="job-title">Hong Kong Chinese Freelance STEM Writer</a>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const jobGroups = document.querySelectorAll('.job-group');
+            const jobCountSpan = document.getElementById('job-count');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    // Update active button state
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+                    let visibleJobCount = 0;
+
+                    jobGroups.forEach(group => {
+                        const category = group.dataset.category;
+                        const jobsInGroup = group.querySelectorAll('.job-item').length;
+                        
+                        // Show or hide the whole group based on the filter
+                        if (filter === 'all' || filter === category) {
+                            group.classList.remove('hidden');
+                            visibleJobCount += jobsInGroup;
+                        } else {
+                            group.classList.add('hidden');
+                        }
+                    });
+                    
+                    // Update job count text
+                    jobCountSpan.textContent = visibleJobCount;
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
