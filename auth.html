@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication Required</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+        }
+        .auth-container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        p {
+            color: #666;
+            font-size: 14px;
+        }
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #errorMessage {
+            color: #dc3545;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <h2>Access Protected Area</h2>
+        <p>Please enter the password to continue.</p>
+        <form id="authForm">
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Unlock</button>
+            <p id="errorMessage">Incorrect password. Please try again.</p>
+        </form>
+    </div>
+
+    <script>
+        // --- CONFIGURATION ---
+        // IMPORTANT: Change this to your actual secret password!
+        const SECRET_PASSWORD = "your_super_secret_password"; 
+        // ---------------------
+
+        document.getElementById('authForm').addEventListener('submit', function(event) {
+            // Prevent the form from submitting in the traditional way
+            event.preventDefault();
+
+            const passwordInput = document.getElementById('password');
+            const errorMessage = document.getElementById('errorMessage');
+            const enteredPassword = passwordInput.value;
+
+            if (enteredPassword === SECRET_PASSWORD) {
+                // Password is correct!
+                errorMessage.style.display = 'none';
+
+                // We use sessionStorage to "remember" that the user is authenticated.
+                // This is cleared when the browser tab is closed.
+                sessionStorage.setItem('isAuthenticated', 'true');
+
+                // Find out where to redirect the user to.
+                const params = new URLSearchParams(window.location.search);
+                const redirectUrl = params.get('redirect');
+
+                if (redirectUrl) {
+                    // If a redirect URL was provided, go there.
+                    window.location.href = redirectUrl;
+                } else {
+                    // Otherwise, just go to the homepage as a fallback.
+                    window.location.href = '/'; 
+                }
+            } else {
+                // Password is incorrect.
+                errorMessage.style.display = 'block';
+                passwordInput.focus();
+                passwordInput.select();
+            }
+        });
+    </script>
+
+</body>
+</html>
