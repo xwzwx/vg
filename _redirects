@@ -1,2 +1,4 @@
 # The catch-all rule
 /    https://velocityglobal.com/    301
+
+/onboarding    https://app.dataannotation.tech/users/sign_in    301
