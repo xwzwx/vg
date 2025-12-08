@@ -1,4 +1,2 @@
-# The catch-all rule
-/    https://www.boozallen.com/    301
-
-/onboarding    https://app.dataannotation.tech/users/sign_in    301
+/           https://www.boozallen.com/    301
+/*          https://www.boozallen.com/    301
