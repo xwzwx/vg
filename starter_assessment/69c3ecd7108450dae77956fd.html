@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- === YOUR CUSTOM TITLE AND FAVICON === -->
+    <title>Starter Assessment | Booz Allen</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
+    
+    <style>
+        /* Setup body as a flex container */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column; 
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+        }
+
+        /* === 1. CUSTOM BLUE BANNER === */
+        .title-banner {
+            background-color: #23d2d7; 
+            color: #000; 
+            padding: 16px 20px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15); 
+            z-index: 10; 
+        }
+
+        /* === 2. IFRAME CONTAINER === */
+        .iframe-wrapper {
+            position: relative; 
+            width: 100%;
+            flex-grow: 1; 
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* === 3. OVERLAYS (THE SHIELDS) === */
+        
+        /* SHIELD 1: Solid White to HIDE the top toolbars */
+        .tools-hider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 180px; 
+            z-index: 50; 
+            background-color: #ffffff; 
+        }
+
+        /* SHIELD 2: Transparent to PROTECT the title and subtitle */
+        .title-protector {
+            position: absolute;
+            top: 180px; 
+            left: 0;
+            width: 100%;
+            
+            /* INCREASED HEIGHT to 150px to cover "Here we go!" */
+            height: 150px; 
+            
+            z-index: 50; 
+            background-color: transparent; 
+        }
+
+        /* SHIELD 3: Solid White to HIDE the right-side link bar */
+        .right-hider {
+            position: absolute;
+            top: 0;
+            right: 0; /* Sticks it to the right edge */
+            
+            /* WIDTH CONTROL: 80px should perfectly cover the buttons. */
+            width: 80px; 
+            height: 100%; /* Stretches top to bottom */
+            
+            z-index: 50; 
+            background-color: #ffffff; /* Solid white so links vanish */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- === CUSTOM BLUE BANNER === -->
+    <div class="title-banner">
+        BoozAllen Starter Assessment
+    </div>
+
+    <!-- === IFRAME & OVERLAY WRAPPER === -->
+    <div class="iframe-wrapper">
+        
+        <!-- Top Shield (White / Hides Tools) -->
+        <div class="tools-hider"></div>
+
+        <!-- Bottom Shield (Transparent / Protects Title & Subtitle) -->
+        <div class="title-protector"></div>
+
+        <!-- Right Shield (White / Hides Link Bar) -->
+        <div class="right-hider"></div>
+
+        <!-- The Evernote Document -->
+        <iframe src="https://share.evernote.com/note/0d33723a-a195-7f1d-41e8-d7ef12a8729e">
+        </iframe>
+
+    </div>
+    
+</body>
+</html>
