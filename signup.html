@@ -31,6 +31,9 @@
             width: 100%;
             height: 1200px; 
             overflow: hidden; 
+            
+            /* Magic line that guarantees buttery-smooth finger scrolling on iPhones! */
+            -webkit-overflow-scrolling: touch; 
         }
 
         iframe {
@@ -39,14 +42,13 @@
             height: 100%;
         }
 
-        /* === 3. THE BOTTOM SHIELD (REPAIRED) === */
+        /* === 3. THE BOTTOM SHIELD (DESKTOP) === */
         .footer-blocker {
             position: absolute;
             bottom: 0; 
             left: 0;
             
-            /* BROUGHT THIS BACK: 100% width MINUS 18px.
-               This perfectly dodges the iframe's scrollbar so it never gets covered! */
+            /* Dodges the physical scrollbar on PC/Laptops */
             width: calc(100% - 18px); 
             
             height: 210px; 
@@ -59,13 +61,17 @@
         @media screen and (max-width: 600px) {
             
             .iframe-wrapper {
+                /* Text wraps on mobile, making the form taller. 
+                   Make sure this is tall enough to reveal the Sign Up button! */
                 height: 1500px; 
             }
 
             .footer-blocker {
                 height: 240px; 
-                /* Note: Kept the width at calc(100% - 18px) here too, 
-                   so if you test by resizing a desktop window, the scrollbar stays safe! */
+                
+                /* CRITICAL MOBILE FIX: Phones do not have 18px physical scrollbars. 
+                   We change this back to 100% so it perfectly touches the right edge of the phone! */
+                width: 100%; 
             }
             
         }
@@ -75,7 +81,7 @@
 
     <div class="iframe-wrapper">
         
-        <!-- The Bottom Shield (Dodges the scrollbar perfectly) -->
+        <!-- The Bottom Shield -->
         <div class="footer-blocker"></div>
 
         <!-- Your Zoho Form -->
