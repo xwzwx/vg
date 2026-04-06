@@ -41,35 +41,19 @@
             position: relative; 
             width: 100%;
             flex-grow: 1; 
+            overflow: hidden; /* Crops out the iframe that gets pushed outside the top boundary */
         }
 
         iframe {
             border: 0;
             width: 100%;
-            height: 100%;
+            /* Pull the iframe up to hide the Evernote header */
+            margin-top: -200px; 
+            /* Add that exact same amount to the height so the bottom isn't cut off */
+            height: calc(100% + 200px); 
         }
 
         /* === 3. OVERLAYS (THE SHIELDS) === */
-        .tools-hider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 180px; 
-            z-index: 50; 
-            background-color: #ffffff; 
-        }
-
-        .title-protector {
-            position: absolute;
-            top: 180px; 
-            left: 0;
-            width: 100%;
-            height: 150px; 
-            z-index: 50; 
-            background-color: transparent; 
-        }
-
         .right-hider {
             position: absolute;
             top: 0;
@@ -182,7 +166,6 @@
 
         .footer-col a {
             display: block;
-            /* Exact match from your web inspector screenshot */
             color: #d9d9d9; 
             font-size: 14px; 
             padding: 8px 0px; 
@@ -191,7 +174,6 @@
         }
 
         .footer-col a:hover {
-            /* Exact match from your web inspector screenshot */
             color: #c0c0c0;
         }
 
@@ -214,7 +196,7 @@
                 gap: 20px;
             }
             .social-links {
-                position: static; /* Centers icons under button on phones */
+                position: static; 
             }
         }
     </style>
@@ -229,8 +211,6 @@
     <!-- === IFRAME & OVERLAY WRAPPER === -->
     <div class="iframe-wrapper">
         
-        <div class="tools-hider"></div>
-        <div class="title-protector"></div>
         <div class="right-hider"></div>
 
         <!-- The Evernote Document -->

