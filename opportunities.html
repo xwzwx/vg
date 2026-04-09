@@ -5,168 +5,439 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Open Opportunities | Booz Allen</title>
     <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
+    
+    <!-- IMPORT THE EXACT "INTER" FONT FOR THE MEGA-FOOTER -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         /* --- General Styling & Fonts --- */
         :root {
             --primary-text-color: #000;
             --secondary-text-color: #555;
             --border-color: #e0e0e0;
-            --button-bg: #ffffff;
-            --button-active-bg: #000000;
-            --button-active-text: #ffffff;
-            --link-color: #000;
+            --link-color: #007a86; /* Professional Teal */
+            --link-hover-color: #005f69;
             --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         }
 
         body {
             font-family: var(--font-stack);
             margin: 0;
+            padding: 0;
             background-color: #f9f9f9;
             color: var(--primary-text-color);
             line-height: 1.6;
         }
 
-        /* --- Main Container & Layout --- */
-        .container {
-/*            max-width: 900px;*/
-/*            margin: 0 auto;*/
-            padding: 20px 100px;
-            background-color: #ffffff;
-        }
-
         /* --- Header & Logo --- */
         .header {
-            text-align: center;
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-            margin-bottom: 20px;
+            background-color: #ffffff;
+            padding: 20px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: left; /* Left Aligned */
         }
 
         .company-logo {
-            max-width: 400px;
+            max-width: 220px;
             height: auto;
+            display: block;
         }
 
-        /* --- Page Titles --- */
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
+        /* --- Hero Section --- */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Shrunk image height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-banner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            opacity: 0.85; /* Slight dim to make text pop */
+        }
+
+        .hero-overlay-text {
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
             text-align: center;
-            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+            margin: 0;
+            padding: 0 20px;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.7);
+        }
+
+        .hero-text-container {
+            max-width: 850px;
+            margin: 40px auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-text-container p {
+            font-size: 1.15rem;
+            color: #000;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- Black Bar & Filters --- */
+        .black-bar {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+
+        .black-bar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .black-bar h1 {
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 300;
+            letter-spacing: -0.5px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 8px 24px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #ffffff;
+            border-radius: 20px;
+            background-color: transparent;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .filter-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .filter-btn.active {
+            background-color: #ffffff;
+            color: #000000;
+            font-weight: 600;
+        }
+
+        /* --- Main Container & Layout --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px 80px 40px;
+        }
+
+        /* --- Page Info Section --- */
+        .info-row {
+            text-align: center;
+            margin-bottom: 40px;
         }
 
         .subtitle {
-            text-align: center;
             color: var(--secondary-text-color);
-            margin-bottom: 40px;
+            margin-bottom: 15px;
             font-size: 1.1rem;
         }
         
-        /* --- NEW: Country List Styling --- */
         .country-list {
-            text-align: center;
             color: var(--secondary-text-color);
-            margin: -20px auto 40px auto;
+            margin: 0 auto;
             font-size: 0.95rem;
-            max-width: 85%;
+            max-width: 900px;
             line-height: 1.5;
         }
 
         .country-list strong {
             color: var(--primary-text-color);
         }
-        /* --- END NEW --- */
 
-
-        /* --- Filter Section --- */
-        .filters {
-            margin-bottom: 40px;
+        /* --- Jobs Table Section --- */
+        .jobs-table-container {
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.04);
+            border: 1px solid #eaeaea;
         }
 
-        .filter-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--secondary-text-color);
-        }
-
-        .filter-buttons {
+        .jobs-header {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            justify-content: space-between;
+            padding: 16px 25px;
+            background-color: #ffffff;
+            border-bottom: 2px solid #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            color: #333;
+            letter-spacing: 0.5px;
         }
 
-        .filter-btn {
-            padding: 8px 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            background-color: var(--button-bg);
-            color: var(--primary-text-color);
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
+        .jobs-header .col-status {
+            width: 120px;
+            text-align: center;
         }
 
-        .filter-btn:hover {
-            border-color: #aaa;
-        }
-
-        .filter-btn.active {
-            background-color: var(--button-active-bg);
-            color: var(--button-active-text);
-            border-color: var(--button-active-bg);
-        }
-        
-        /* --- Job List Section --- */
+        /* Category Annotator Row */
         .job-category {
-            margin-top: 30px;
-            font-size: 1.5rem;
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary-text-color);
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            background-color: #f6f8f9; /* Distinct light gray background */
+            padding: 16px 25px;
+            margin: 0;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #306570; /* Professional Teal color */
+            border-bottom: 1px solid #eaeaea;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .job-item {
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 25px;
+            border-bottom: 1px solid #eaeaea;
+            transition: background-color 0.2s ease;
         }
 
         .job-item:last-child {
             border-bottom: none;
         }
 
+        .job-item:hover {
+            background-color: #f4f8f9;
+        }
+
         .job-title {
             text-decoration: none;
             color: var(--link-color);
-            font-size: 1.1rem;
-            font-weight: 500;
+            font-size: 1.05rem;
+            font-weight: 600;
             transition: color 0.2s ease;
         }
 
         .job-title:hover {
-            color: #008491;
+            color: var(--link-hover-color);
             text-decoration: underline;
         }
+
+        .job-status {
+            width: 120px;
+            text-align: center;
+        }
+
+        /* Status Dots */
+        .status-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-green { background-color: #28a745; box-shadow: 0 0 5px rgba(40, 167, 69, 0.4); }
+        .dot-yellow { background-color: #ffc107; box-shadow: 0 0 5px rgba(255, 193, 7, 0.4); }
+        .dot-red { background-color: #dc3545; box-shadow: 0 0 5px rgba(220, 53, 69, 0.4); }
         
         /* --- Hide/Show Logic --- */
         .hidden {
-            display: none;
+            display: none !important;
+        }
+
+        /* --- AUTHENTIC MEGA-FOOTER STYLES --- */
+        .booz-footer {
+            font-family: 'Inter', Calibri, Geneva, sans-serif;
+            background-color: #000000; 
+            color: #ffffff; 
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .subscribe-bar {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 40px; 
+            border-bottom: 1px solid #222222; 
+        }
+
+        .subscribe-center {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .subscribe-text {
+            color: #23d2d7;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        .subscribe-btn {
+            background-color: #23d2d7;
+            color: #000000;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            display: inline-block;
+            transition: background-color 0.2s;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #1ebbc0;
+        }
+
+        .social-links {
+            position: absolute;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 34px;
+            height: 34px;
+            border: 1.5px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .social-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            border-color: #c0c0c0;
+            color: #c0c0c0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 24px 40px; 
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 4px 0; 
+            letter-spacing: 0.2px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #d9d9d9; 
+            font-size: 14px; 
+            padding: 8px 0px; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
+            color: #c0c0c0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222222; 
+            text-align: center;
+            padding: 16px 20px;
+            font-size: 11px;
+            color: #d9d9d9;
         }
 
         /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .container {
-                padding: 15px;
+            .hero-section {
+                height: 250px;
             }
 
-            h1 {
-                font-size: 1.5rem;
+            .hero-overlay-text {
+                font-size: 2rem;
+            }
+
+            .black-bar-inner {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 0 20px;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .container {
+                padding: 0 20px 40px 20px;
             }
 
             .company-logo {
-                max-width: 300px;
+                max-width: 180px;
+            }
+
+            .job-title {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Footer Mobile Layout Shifts */
+        @media screen and (max-width: 900px) {
+            .footer-grid {
+                display: none; 
+            }
+            .subscribe-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .social-links {
+                position: static; 
+            }
+        }
+
+        @media screen and (max-width: 650px) {
+            .subscribe-center {
+                flex-direction: column;
+                gap: 12px;
             }
         }
 
@@ -174,32 +445,49 @@
 </head>
 <body>
 
-    <div class="container">
-        <header class="header">
-            <!-- IMPORTANT: Make sure 'vg_logo.png' is in the same folder as this HTML file -->
-            <img src="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/bz_logo.png" alt="Booz Allen Logo" class="company-logo">
-        </header>
+    <!-- Logo Header Left Aligned -->
+    <header class="header">
+        <img src="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/bz_logo.png" alt="Booz Allen Logo" class="company-logo">
+    </header>
 
-        <main>
+    <!-- Full Width Banner with Text Overlay & Adjusted Height -->
+    <div class="hero-section">
+        <img src="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/careerBanner.webp" alt="Careers Banner" class="hero-banner">
+        <h2 class="hero-overlay-text">JOIN US. THE WORLD CAN'T WAIT.</h2>
+    </div>
+
+    <!-- Mission Text underneath banner -->
+    <div class="hero-text-container">
+        <p>At Booz Allen, we're mission accelerators dedicated to empowering people to change the world. Explore our career opportunities and discover how you can use technology to help us build a better tomorrow.</p>
+    </div>
+
+    <!-- Black Bar with Title and Filters -->
+    <div class="black-bar">
+        <div class="black-bar-inner">
             <h1>Open Opportunities</h1>
-            <p class="subtitle">Showing <span id="job-count">61</span> opportunities</p>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="specialists">Specialists</button>
+                <button class="filter-btn" data-filter="coders">Coders</button>
+                <button class="filter-btn" data-filter="languages">Languages</button>
+            </div>
+        </div>
+    </div>
 
-            <!-- NEWLY ADDED COUNTRY LIST -->
+    <main class="container">
+        
+        <div class="info-row">
+            <p class="subtitle">Showing <span id="job-count">61</span> opportunities</p>
             <p class="country-list">
                 <strong>Available countries:</strong> Australia, Austria, Belgium, Canada, Denmark, Finland, France, Germany, Ireland, Israel, Italy, Japan, Netherlands, New Zealand, Norway, Singapore, Spain, Sweden, Switzerland, Taiwan, UAE, United Kingdom, United States
             </p>
-            <!-- END OF NEW SECTION -->
+        </div>
 
-            <section class="filters">
-                <span class="filter-label">Type</span>
-                <div class="filter-buttons">
-                    <!-- Added an "All" button for better UX -->
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="specialists">Specialists</button>
-                    <button class="filter-btn" data-filter="coders">Coders</button>
-                    <button class="filter-btn" data-filter="languages">Languages</button>
-                </div>
-            </section>
+        <div class="jobs-table-container">
+            <div class="jobs-header">
+                <div>Title</div>
+                <div class="col-status">Job Status</div>
+            </div>
 
             <section id="job-listings">
 
@@ -208,63 +496,83 @@
                     <h2 class="job-category">Specialists</h2>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/math-trainer" class="job-title">AI Math Trainer</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/physics-expert" class="job-title">Advanced Physics Expertise Sought for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/chemistry-expert" class="job-title">Advanced Chemistry Expertise Sought for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/biology-expert" class="job-title">Advanced Biology Expertise Sought for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/design-expert" class="job-title">Graphics & Visual Design Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/ux-designer" class="job-title">UX Designer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/product-designer" class="job-title">Product Designer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                                        
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/marketing-analyst" class="job-title">Marketing Analyst for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/sales-analyst" class="job-title">Sales Analyst for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/product-expert" class="job-title">Product Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/business-analyst" class="job-title">Business Analyst for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/civil-expert" class="job-title">Civil Engineering Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/earth-science-expert" class="job-title">Earth Science Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/electrical-engineering-expert" class="job-title">Electrical Engineering Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/financial-analyst" class="job-title">Financial Analyst for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/legal-expert" class="job-title">Legal Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/history-expert" class="job-title">History Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/geography-expert" class="job-title">Geography Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/hr-analyst" class="job-title">HR Analyst for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/specialists/project-manager" class="job-title">Project Manager for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                              
                 </div>
 
@@ -273,81 +581,107 @@
                     <h2 class="job-category">Coders</h2>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/software-engineer" class="job-title">Software Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/full-stack-developer" class="job-title">Full Stack Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/front-end-developer" class="job-title">Front-End Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/back-end-developer" class="job-title">Back-End Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/machine-learning-engineer" class="job-title">Machine Learning Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/python-expert" class="job-title">Python Expert for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/go-developer" class="job-title">Go Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/rust-developer" class="job-title">Rust Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                    
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/java-engineer" class="job-title">Java Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/csharp-engineer" class="job-title">C# Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                    
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/dotnet-engineer" class="job-title">.NET Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/android-developer" class="job-title">Android Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/mobile-developer" class="job-title">Mobile App Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/mobile-test-engineer" class="job-title">Mobile Test Automation Engineer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>                    
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/kotlin-developer" class="job-title">Kotlin Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/flutter-developer" class="job-title">Flutter Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/react-native-developer" class="job-title">React Native Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                                                                                                                                                          
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/coding-expert" class="job-title">AI Coding Expert</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/data-engineer" class="job-title">AI Data Engineer</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/research-engineer" class="job-title">AI Research Engineer</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/cpp-developer" class="job-title">C/C++ Developer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/systems-developer" class="job-title">AI Systems Developer</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/automation-engineer" class="job-title">AI Test Automation Engineer</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/prompt-engineer" class="job-title">Prompt Engineer</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/tensorflow-developer" class="job-title">TensorFlow Developer</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/coders/ai-programmer" class="job-title">AI Programmer</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>                                                                                                                           
                 </div>
 
@@ -356,53 +690,141 @@
                     <h2 class="job-category">Languages</h2>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/arabic" class="job-title">Arabic Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/catalan" class="job-title">Catalan Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/danish" class="job-title">Danish Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/dutch" class="job-title">Dutch Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/finnish" class="job-title">Finnish Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/french" class="job-title">French Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/german" class="job-title">German Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/hebrew" class="job-title">Hebrew Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-yellow"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/irish" class="job-title">Irish Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/italian" class="job-title">Italian Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/japanese" class="job-title">Japanese Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/mandarin" class="job-title">Mandarin Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/norwegian" class="job-title">Norwegian Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-red"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/spanish" class="job-title">Spanish Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>
                     <div class="job-item">
                         <a href="https://boozallen.tech/opportunities/languages/swedish" class="job-title">Swedish Writer for AI Training</a>
+                        <div class="job-status"><span class="status-dot dot-green"></span></div>
                     </div>                                                                       
                 </div>
 
             </section>
-        </main>
+        </div>
+    </main>
+
+    <!-- === AUTHENTIC BOOZ ALLEN MEGA-FOOTER === -->
+    <div class="booz-footer">
+        
+        <!-- Subscribe & Social Bar -->
+        <div class="subscribe-bar">
+            
+            <div class="subscribe-center">
+                <div class="subscribe-text">Stay Connected with Booz Allen</div>
+                <a class="subscribe-btn" href="https://pages.boozallen.com/preference-center.html" target="_blank">Subscribe</a>
+            </div>
+
+            <!-- Round Social Icons -->
+            <div class="social-links">
+                <a href="https://www.linkedin.com/company/booz-allen-hamilton" target="_blank" class="social-icon" aria-label="LinkedIn">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/BoozAllen" target="_blank" class="social-icon" aria-label="X (Twitter)">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                    </svg>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- OPTIMIZED Link Grid -->
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>INFORMATION FOR</h4>
+                <a href="https://access.bah.com/">Employees</a>
+                <a href="https://investors.boozallen.com/">Investors</a>
+                <a href="https://www.boozallen.com/menu/government-contract-vehicles.html">Contract Officers</a>
+                <a href="https://www.boozallen.com/menu/suppliers-and-small-businesses.html">Suppliers</a>
+            </div>
+            <div class="footer-col">
+                <h4>INDUSTRIES</h4>
+                <a href="https://www.boozallen.com/markets/civil-government.html">Government & Civil Agencies</a>
+                <a href="https://www.boozallen.com/markets/intelligence.html">Intelligence</a>
+                <a href="https://www.boozallen.com/markets/health.html">Life Sciences & Healthcare</a>
+                <a href="https://www.boozallen.com/markets/defense.html">Military</a>
+            </div>
+            <div class="footer-col">
+                <h4>FEATURED SOLUTIONS</h4>
+                <a href="https://www.boozallen.com/expertise/artificial-intelligence.html">Artificial Intelligence (AI)</a>
+                <a href="https://www.boozallen.com/expertise/digital-solutions/cloud-solutions.html">Cloud</a>
+                <a href="https://www.boozallen.com/s/solution/a-solution-for-enterprise-scale-devsecops.html">Enterprise DevSecOps</a>
+                <a href="https://www.boozallen.com/expertise/cybersecurity.html">Security</a>
+            </div>
+            <div class="footer-col">
+                <h4>ABOUT US</h4>
+                <a href="https://www.boozallen.com/about.html">About Us</a>
+                <a href="https://www.boozallen.com/about/empowering-our-people.html">Who We Are</a>
+                <a href="https://www.boozallen.com/expertise.html">What We Do</a>
+                <a href="https://www.boozallen.com/careers.html">Join Our Team</a>
+            </div>
+            <div class="footer-col">
+                <h4>SITE LINKS</h4>
+                <a href="https://www.boozallen.com/tools/footer-navigation/contact-us.html">Contact Us</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/privacy-policy.html">Privacy Statement</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/terms-of-use.html">Terms of Use</a>
+                <a href="https://www.boozallen.com/tools/footer-navigation/cookie-policy.html">Cookie Policy</a>
+            </div>
+        </div>
+
+        <!-- Copyright Line -->
+        <div class="footer-bottom">
+            &copy; 2026 Booz Allen Hamilton Inc. All Rights Reserved.
+        </div>
+        
     </div>
 
     <script>
@@ -423,10 +845,16 @@
                     jobGroups.forEach(group => {
                         const category = group.dataset.category;
                         const jobsInGroup = group.querySelectorAll('.job-item').length;
+                        const categoryHeader = group.querySelector('.job-category');
                         
-                        // Show or hide the whole group based on the filter
-                        if (filter === 'all' || filter === category) {
+                        // Show or hide the whole group and header based on the filter
+                        if (filter === 'all') {
                             group.classList.remove('hidden');
+                            categoryHeader.style.display = 'block'; // Show category title on 'All'
+                            visibleJobCount += jobsInGroup;
+                        } else if (filter === category) {
+                            group.classList.remove('hidden');
+                            categoryHeader.style.display = 'none'; // Hide category title on specific tab
                             visibleJobCount += jobsInGroup;
                         } else {
                             group.classList.add('hidden');
