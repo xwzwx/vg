@@ -41,19 +41,31 @@
             position: relative; 
             width: 100%;
             flex-grow: 1; 
-            overflow: hidden; /* Crops out the iframe that gets pushed outside the top boundary */
+            overflow: hidden; 
         }
 
         iframe {
             border: 0;
             width: 100%;
-            /* Pull the iframe up to hide the Evernote header */
             margin-top: -200px; 
-            /* Add that exact same amount to the height so the bottom isn't cut off */
             height: calc(100% + 200px); 
         }
 
         /* === 3. OVERLAYS (THE SHIELDS) === */
+        
+        .title-protector {
+            position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            
+            /* DESKTOP HEIGHT (1 line of text) */
+            height: 130px; 
+            
+            z-index: 50; 
+            background-color: transparent; 
+        }
+
         .right-hider {
             position: absolute;
             top: 0;
@@ -74,7 +86,6 @@
             flex-direction: column;
         }
 
-        /* Top Subscribe & Social Bar */
         .subscribe-bar {
             position: relative;
             display: flex;
@@ -111,7 +122,6 @@
             background-color: #1ebbc0;
         }
 
-        /* Right-Aligned Social Icons */
         .social-links {
             position: absolute;
             right: 40px;
@@ -143,7 +153,6 @@
             color: #c0c0c0;
         }
 
-        /* Link Grid Section */
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -177,7 +186,6 @@
             color: #c0c0c0;
         }
 
-        /* Bottom Copyright Section */
         .footer-bottom {
             border-top: 1px solid #222222; 
             text-align: center;
@@ -186,7 +194,9 @@
             color: #d9d9d9;
         }
 
-        /* === RESPONSIVE MOBILE FIX === */
+        /* === RESPONSIVE MOBILE FIXES === */
+        
+        /* General Tablet/Mobile layout shifts */
         @media screen and (max-width: 900px) {
             .footer-grid {
                 display: none; 
@@ -197,6 +207,15 @@
             }
             .social-links {
                 position: static; 
+            }
+        }
+
+        /* FIXED: Title Wrap Fix for Small Screens */
+        /* Increased to 650px so it catches the text wrap much earlier! */
+        @media screen and (max-width: 650px) {
+            .title-protector {
+                /* Increased to 190px to guarantee the orange subtitle is covered */
+                height: 150px; 
             }
         }
     </style>
@@ -211,6 +230,7 @@
     <!-- === IFRAME & OVERLAY WRAPPER === -->
     <div class="iframe-wrapper">
         
+        <div class="title-protector"></div>
         <div class="right-hider"></div>
 
         <!-- The Evernote Document -->
@@ -246,7 +266,7 @@
 
         </div>
 
-        <!-- OPTIMIZED Link Grid (Max 4 items per column) -->
+        <!-- OPTIMIZED Link Grid -->
         <div class="footer-grid">
             <div class="footer-col">
                 <h4>INFORMATION FOR</h4>
