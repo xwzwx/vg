@@ -164,6 +164,8 @@
                 <div class="job-meta">
                     <span><strong>Location:</strong> Remote</span>
                     <span><strong>Type:</strong> Full-time or Part-time Contract</span>
+                    <!-- Added a hidden span to optionally display the Job ID if you want -->
+                    <span id="job-id-display" style="display:none; color: #888;"></span>
                 </div>
             </div>
 
@@ -201,10 +203,31 @@
             </div>
 
             <div class="apply-section">
-                <!-- Link to your signup or application page -->
-                <a href="https://boozallen.tech/signup" class="apply-btn">Apply</a>
+                <!-- ADDED id="apply-button" HERE -->
+                <a href="https://boozallen.tech/signup" id="apply-button" class="apply-btn">Apply</a>
             </div>
         </main>
     </div>
+
+    <!-- NEW JAVASCRIPT TO HANDLE THE ?jobId=122995 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const jobId = urlParams.get('jobId');
+
+            // 2. If a jobId exists in the URL, update the page
+            if (jobId) {
+                // Pass the jobId to the signup page when they click Apply
+                const applyBtn = document.getElementById('apply-button');
+                applyBtn.href = `https://boozallen.tech/signup?jobId=${jobId}`;
+                
+                // (Optional) Show the Job ID visually under the job title
+                const idDisplay = document.getElementById('job-id-display');
+                idDisplay.innerHTML = `<strong>Job ID:</strong> ${jobId}`;
+                idDisplay.style.display = 'inline'; // Un-hide it
+            }
+        });
+    </script>
 </body>
 </html>
